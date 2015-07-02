@@ -25,6 +25,12 @@ Module.filter('time',function () {
   };
 });
 
+Module.filter('initial',function () {
+  return function (string) {
+    return string.substr(0,1);
+  };
+});
+
 Module.directive('datePicker', ['datePickerConfig', 'datePickerUtils', function datePickerDirective(datePickerConfig, datePickerUtils) {
 
   //noinspection JSUnusedLocalSymbols
