@@ -102,11 +102,12 @@
 [date-picker] .now {
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
-[date-picker] .now {
-  background-color: #009688;
-}
 [date-picker] .active {
   color: #009688;
+}
+[date-picker] .now {
+  color: #000000;
+  background-color: #009688;
 }
 [date-picker] .disabled {
   background: none;
