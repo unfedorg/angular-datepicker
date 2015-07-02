@@ -3,7 +3,7 @@
 var Module = angular.module('datePicker', []);
 
 Module.constant('datePickerConfig', {
-  template: 'app/templates/datepicker.html',
+  template: 'templates/datepicker.html',
   view: 'month',
   views: ['year', 'month', 'date', 'hours', 'minutes'],
   step: 5
@@ -23,6 +23,12 @@ Module.filter('time',function () {
     }
     return format(date);
   };
+});
+
+Module.filter('initial',function () {
+    return function (string) {
+        return string.substr(0,1);
+    };  
 });
 
 Module.directive('datePicker', ['datePickerConfig', 'datePickerUtils', function datePickerDirective(datePickerConfig, datePickerUtils) {
@@ -413,7 +419,7 @@ var Module = angular.module('datePicker');
 
 Module.directive('dateRange', function () {
   return {
-    templateUrl: 'app/templates/daterange.html',
+    templateUrl: 'templates/daterange.html',
     scope: {
       start: '=',
       end: '='
@@ -626,7 +632,7 @@ $templateCache.put('app/templates/datepicker.html',
     "        <th ng-click=\"next()\">&rsaquo;</i></th>\n" +
     "      </tr>\n" +
     "      <tr>\n" +
-    "        <th ng-repeat=\"day in weekdays\" style=\"overflow: hidden\" ng-bind=\"day|date:'EEE'\"></th>\n" +
+    "        <th ng-repeat=\"day in weekdays\" style=\"overflow: hidden\" ng-bind=\"day|date:'EEE'|initial\"></th>\n" +
     "      </tr>\n" +
     "      </thead>\n" +
     "      <tbody>\n" +
