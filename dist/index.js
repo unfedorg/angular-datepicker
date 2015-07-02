@@ -342,7 +342,7 @@ angular.module('datePicker').factory('datePickerUtils', function(){
     getDaysOfWeek : function(date) {
       date = new Date(date || new Date());
       date = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-      date.setDate(date.getDate() - (date.getDay() - 1));
+      date.setDate(date.getDate() - (date.getDay()));
       truncateToDay(date);
       var days = [];
       for (var i = 0; i < 7; i++) {
@@ -414,6 +414,7 @@ angular.module('datePicker').factory('datePickerUtils', function(){
     }
   };
 });
+
 'use strict';
 
 var Module = angular.module('datePicker');
