@@ -58,6 +58,14 @@ Module.directive('datePicker', ['datePickerConfig', 'datePickerUtils', function 
       var step = parseInt(attrs.step || datePickerConfig.step, 10);
       var partial = !!attrs.partial;
 
+      if (angular.isDefined(attrs.minDate)) {
+        scope.minDate = new Date(attrs.minDate);
+      }
+
+      if (angular.isDefined(attrs.maxDate)) {
+        scope.maxDate = new Date(attrs.maxDate);
+      }
+
       //if ngModel, we can add min and max validators
       if(ngModel)
       {
@@ -103,6 +111,9 @@ Module.directive('datePicker', ['datePickerConfig', 'datePickerUtils', function 
 
       scope.setDate = function (date) {
         if(attrs.disabled) {
+          return;
+        }
+        if(date < scope.minDate || date > scope.maxDate){
           return;
         }
         scope.date = date;
@@ -644,7 +655,7 @@ angular.module("datePicker").run(["$templateCache", function($templateCache) {
     "      <tr ng-repeat=\"week in weeks\">\n" +
     "        <td ng-repeat=\"day in week\">\n" +
     "          <span\n" +
-    "            ng-class=\"{'now':isNow(day),'active':isSameDay(day),'disabled':(day.getMonth()!=date.getMonth()),'after':isAfter(day),'before':isBefore(day)}\"\n" +
+    "              ng-class=\"{'now':isNow(day),'active':isSameDay(day),'disabled':(day < minDate || day > maxDate) || (day.getMonth()!=date.getMonth()),'after':isAfter(day),'before':isBefore(day)}\"\n" +
     "            ng-click=\"setDate(day)\" ng-bind=\"day.getDate()\"></span>\n" +
     "        </td>\n" +
     "      </tr>\n" +
