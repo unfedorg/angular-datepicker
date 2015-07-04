@@ -56,6 +56,14 @@ Module.directive('datePicker', ['datePickerConfig', 'datePickerUtils', function 
       var step = parseInt(attrs.step || datePickerConfig.step, 10);
       var partial = !!attrs.partial;
 
+      if (angular.isDefined(attrs.minDate)) {
+        scope.minDate = new Date(attrs.minDate);
+      }   
+
+      if (angular.isDefined(attrs.maxDate)) {
+        scope.maxDate = new Date(attrs.maxDate);
+      } 
+
       //if ngModel, we can add min and max validators
       if(ngModel)
       {
@@ -101,6 +109,9 @@ Module.directive('datePicker', ['datePickerConfig', 'datePickerUtils', function 
 
       scope.setDate = function (date) {
         if(attrs.disabled) {
+          return;
+        }
+        if(date < scope.minDate || date > scope.maxDate){
           return;
         }
         scope.date = date;
