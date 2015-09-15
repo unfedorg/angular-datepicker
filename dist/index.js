@@ -312,15 +312,15 @@ angular.module('datePicker').factory('datePickerUtils', function(){
 
       if (date.getDay() === 0) {
         // day is sunday, let's get back to the previous week
-        date.setDate(-5);
+        //date.setDate(-5);
       } else {
         // day is not sunday, let's get back to the start of the week
-        date.setDate(date.getDate() - (date.getDay() - 1));
+        date.setDate(date.getDate() - date.getDay());
       }
-      if (date.getDate() === 1) {
-        // day is monday, let's get back to the previous week
-        date.setDate(-6);
-      }
+      //if (date.getDate() === 1) {
+      //  // day is monday, let's get back to the previous week
+      //  date.setDate(-6);
+      //}
 
       var weeks = [];
       while (weeks.length < 6) {
